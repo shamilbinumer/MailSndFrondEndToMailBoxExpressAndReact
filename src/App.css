@@ -1,0 +1,55 @@
+/* App.css */
+
+.caard {
+  max-width: 400px;
+  margin-top: 10% !important;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.caard form {
+  display: flex;
+  flex-direction: column;
+}
+
+.caard input,
+.caard textarea {
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.caard button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.caard button:hover {
+  background-color: #0056b3;
+}
+
+/* Toast notification style */
+.react-toastify-toast {
+  font-family: Arial, sans-serif;
+}
+
+.react-toastify__toast--success {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.react-toastify__toast--success .Toastify__close-button {
+  color: #fff;
+}
+
+.react-toastify__toast--success:hover .Toastify__close-button {
+  color: #ccc;
+}
