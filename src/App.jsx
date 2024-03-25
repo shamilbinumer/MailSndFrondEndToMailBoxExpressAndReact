@@ -1,7 +1,7 @@
 // import nodemailer  from 'nodemailer';
 import axios from 'axios';
 import './App.css'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -11,6 +11,7 @@ function App() {
       const [to, setTo] = useState("");  
       const [subject, setSubject] = useState("");
       const [message, setMessage] = useState("");
+      const [successMsg,setSuccessmsg]=useState("")
 
       const handleSubmit =async (e) => {
         e.preventDefault()
@@ -29,6 +30,16 @@ function App() {
           });
         }
       };
+
+      const getMasg=async()=>{
+        const res=await axios.get("http://localhost:3030/api/sended")
+        console.log(res.data);
+        setSuccessmsg(res.data)
+      }
+
+      useEffect(()=>{
+        getMasg()
+      },[])
 
   return (
     <>
@@ -55,6 +66,7 @@ function App() {
           ></textarea>
           <button type="submit">Send Email</button>
         </form>
+        <h1>{successMsg}</h1>
    </div>
         
     </>

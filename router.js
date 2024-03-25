@@ -1,6 +1,7 @@
 import { Router } from "express";
 import nodemailer from "nodemailer";
 import { google } from "googleapis";
+import schedule from 'node-schedule';
 
 const router = Router();
 
@@ -30,19 +31,25 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-router.post("/send", (req, res) => {
+// Schedule email to be sent at 3:00 PM daily
+const job = schedule.scheduleJob({ hour: 15, minute: 21 }, function () {
     const mailOptions = {
-        from: req.body.from,
-        to: req.body.to,
-        subject: req.body.subject,
-        html: req.body.message
+        from: "shamilmohd418@gmail.com", // Change this to your email
+        to: "mohammedshamil596@gmail.com", // Change this to recipient's email
+        subject: "Scheduled Email",
+        html: "<h1>Hellow Shamil</h1>"
     };
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
-            return res.status(500).send(error);
+            console.error("Error sending email:", error);
+        } else {
+            console.log("Email sent successfully:", info.response);
         }
-        res.status(200).send("Email sent successfully");
     });
+});
+
+router.get("/sended", (req, res) => {
+    res.send("Email scheduled successfully.");
 });
 
 export default router;
