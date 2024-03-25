@@ -31,7 +31,6 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-// Schedule email to be sent at 3:00 PM daily
 const job = schedule.scheduleJob({ hour: 15, minute: 21 }, function () {
     const mailOptions = {
         from: "shamilmohd418@gmail.com", // Change this to your email
